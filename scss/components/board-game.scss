@@ -1,0 +1,870 @@
+.board-game {
+	background-color: #202020;
+	width: 40%;
+	padding: 20px;
+	.gaming-data {
+		display: flex;
+		.dices {
+			.dice-square {
+				width: 55px;
+				height: 55px;
+				border-radius: 10px;
+				margin-bottom: 15px;
+				box-shadow: 0 0 10px 7px #fff;
+				padding: 4px;
+				.inner {
+					height: 100%;
+					background-color: #FFFFFE;
+					border-radius: 5px;
+				}
+			}
+		}
+		.rows {
+			margin-left: 20px;
+			width: 100%;
+			.turns {
+				display: flex;
+				justify-content: space-between;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				.turn-item {
+					background: radial-gradient(#FFFFFF -10%, #000000 150%);
+					border: 2px solid white;
+					box-shadow: 0 0 10px 7px #fff;
+					width: 50px;
+					height: 59px;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					border-radius: 10px;
+					.index {
+						width: 70%;
+						height: 50%;
+						border-radius: 5px;
+						text-align: center;
+						background-color: white;
+						margin-top: 4px;
+						// padding-top: 5px;
+						font-family: sans-serif;
+					}
+					.icon {
+						width: 15px;
+						height: 15px;
+						background-color: black;
+						border: 1px solid white;
+					    margin-top: 4px;
+					    border-radius: 4px;
+					    position: relative;
+						.reroll {
+							background-image: url('/ressources/reroll-icon.png');
+							height: 100%;
+						    width: 100%;
+						    position: absolute;
+						    background-size: contain;
+						    background-repeat: no-repeat;
+						    transform: translate(3%, 0px);
+						}
+						.additional {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								content: '+1';
+								color: white;
+								font-size: 12px;
+							}
+						}
+					}
+				}
+			}
+			.reroll-power {
+				background: radial-gradient(#FFFFFF -10%, #000000 150%);
+				border: 2px solid white;
+				box-shadow: 0 0 10px 7px #fff;
+				height: 59px;
+				display: flex;
+				align-items: center;
+				border-radius: 10px;
+				margin-top: 15px;
+				padding: 0 13px;
+				.icon {
+					width: 34px;
+				    height: 34px;
+				    background-color: black;
+				    border: 2px solid white;
+				    border-radius: 10px;
+				    position: relative;
+					.reroll {
+						background-image: url('/ressources/reroll-icon.png');
+						height: 100%;
+					    width: 100%;
+					    position: absolute;
+					    background-size: contain;
+					    background-repeat: no-repeat;
+					    transform: translate(-4%, 0px);
+					}
+				}
+				ul {
+					display: flex;
+					align-items: center;
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					justify-content: space-around;
+					width: 100%;
+					li {
+					    border-radius: 50%;
+					    width: 35px;
+					    height: 35px;
+					    border: 5px solid white;
+					    background-color: lightgray;
+	    			    box-shadow: 0 0 5px 0px #000;
+					}
+				}
+			}
+			.additional-dice-power {
+				background: radial-gradient(#FFFFFF -10%, #000000 150%);
+				border: 2px solid white;
+				box-shadow: 0 0 10px 7px #fff;
+				height: 59px;
+				display: flex;
+				align-items: center;
+				border-radius: 10px;
+				margin-top: 15px;
+				padding: 0 13px;
+				.icon {
+					width: 34px;
+				    height: 34px;
+				    background-color: black;
+				    border: 2px solid white;
+				    border-radius: 10px;
+				    position: relative;
+					.inner {
+						position: relative;
+						height: 100%;
+						&::after {
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+							content: '+1';
+							color: white;
+							font-size: 20px;
+						}
+					}
+				}
+				ul {
+					display: flex;
+					align-items: center;
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					width: 100%;
+					justify-content: space-around;
+					li {
+					    border-radius: 50%;
+					    width: 35px;
+					    height: 35px;
+					    border: 5px solid white;
+					    background-color: lightgray;
+	    				box-shadow: 0 0 5px 0px #000;
+					}
+				}
+			}
+		}
+	}
+	.yellow-blue-grids {
+		display: flex;
+		margin-top: 15px;
+		.yellow-grid {
+			width: 100%;
+			background: radial-gradient(#fff702 -150%, #000000 150%);
+	    	border: 2px solid #fff702;
+	    	box-shadow: 0 0 5px 2px #fff702;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			border-radius: 10px;
+			padding: 10px;
+			margin-right: 15px;
+			.value-row {
+				display: flex;
+				align-items: center;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 100%;
+				justify-content: space-around;
+				margin-left: 4px;
+				li {
+					width: 35px;
+					height: 35px;
+					background-color: white;
+					border-radius: 7px;
+					margin: 0 10px 10px 0px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					font-weight: bold;
+				    font-family: sans-serif;
+				    font-size: 18px;
+				    &.done { opacity: 0.6 }
+				}
+				.reward {
+					width: 17px;
+				    height: 17px;
+				    border: 1px solid white;
+				    border-radius: 5px;
+				    box-shadow: 0 0 5px 0px #000;
+				    &.reroll, &.additional { background-color: black;  }
+				    &.blue { background-color: #336db2; }
+				    &.purple { background-color: #460760; }
+				    &.yellow { 
+				    	background-color: #f4e319;
+				    	color: black;
+				    }
+				    &.orange { background-color: #ee9c29; }
+				    &.green { background-color: #22BB22; }
+					.inner {
+						position: relative;
+						height: 100%;
+					    width: 100%;
+						&.reroll {
+					    	background-repeat: no-repeat;
+					    	background-size: contain;
+							background-image: url('/ressources/reroll-icon.png');
+						}
+						&.additional {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								content: '+1';
+								color: white;
+								font-size: 12px;
+							}
+						}
+						&.blue, &.green, &.yellow {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-47%, -57%);
+								content: 'x';
+								font-family: sans-serif;
+								font-size: 17px;
+							}
+						}
+						&.blue, &.green {
+							color: #e7e7e7;
+						}
+					}
+				}
+			}
+			.column-reward {
+				display: flex;
+				align-items: center;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 100%;
+				justify-content: space-around;
+				margin-left: 4px;
+				.reward {
+					width: 50px;
+					height: 50px;
+					background-color: white;
+					display: flex;
+				    justify-content: center;
+				    align-items: center;
+					clip-path: polygon(49% 0%, 56% 10%, 68% 9%, 70% 19%, 81% 21%, 78% 32%, 87% 38%, 79% 46%, 83% 57%, 71% 59%, 75% 72%, 64% 68%, 62% 78%, 51% 70%, 44% 79%, 39% 67%, 27% 73%, 28% 60%, 16% 61%, 23% 49%, 12% 48%, 20% 36%, 11% 31%, 22% 26%, 18% 17%, 29% 16%, 31% 6%, 43% 10%);
+					.inner {
+						background-color: #FFF702;
+						color: black;
+						font-size: 20px;
+						clip-path: polygon(49% 0%, 56% 10%, 68% 9%, 70% 19%, 81% 21%, 78% 32%, 87% 38%, 79% 46%, 83% 57%, 71% 59%, 75% 72%, 64% 68%, 62% 78%, 51% 70%, 44% 79%, 39% 67%, 27% 73%, 28% 60%, 16% 61%, 23% 49%, 12% 48%, 20% 36%, 11% 31%, 22% 26%, 18% 17%, 29% 16%, 31% 6%, 43% 10%);
+						width: 85%;
+						height: 85%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+				}
+			}
+		}
+		.blue-grid {
+			width: 100%;
+			background: radial-gradient(#00adff -150%, #000000 150%);
+	    	border: 2px solid #00adff;
+	    	box-shadow: 0 0 5px 2px #00adff;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			border-radius: 10px;
+			padding: 10px;
+			.points {
+				display: flex;
+				align-items: center;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 100%;
+				justify-content: space-around;
+				margin-left: 4px;
+				li {
+					.reward {
+						width: 23px;
+						height: 23px;
+						clip-path: polygon(49% 0%, 56% 10%, 68% 9%, 70% 19%, 81% 21%, 78% 32%, 87% 38%, 79% 46%, 83% 57%, 71% 59%, 75% 72%, 64% 68%, 62% 78%, 51% 70%, 44% 79%, 39% 67%, 27% 73%, 28% 60%, 16% 61%, 23% 49%, 12% 48%, 20% 36%, 11% 31%, 22% 26%, 18% 17%, 29% 16%, 31% 6%, 43% 10%);
+						background-color: white;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						.inner {
+							clip-path: polygon(49% 0%, 56% 10%, 68% 9%, 70% 19%, 81% 21%, 78% 32%, 87% 38%, 79% 46%, 83% 57%, 71% 59%, 75% 72%, 64% 68%, 62% 78%, 51% 70%, 44% 79%, 39% 67%, 27% 73%, 28% 60%, 16% 61%, 23% 49%, 12% 48%, 20% 36%, 11% 31%, 22% 26%, 18% 17%, 29% 16%, 31% 6%, 43% 10%);
+							background-color: #00adff;
+							width: 80%;
+							height: 80%;
+							transform: translate(0, -3%);
+							color: white;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							font-size: 10px;
+							div {
+								transform: translate(0, -2px);
+							}
+						}
+					}
+					.index {
+						color: white;
+						text-align: center;
+						font-size: 15px;
+					}
+				}
+			}
+			.rows {
+				width: 100%;
+				display: flex;
+			    flex-direction: column;
+			    align-items: center;
+				&::before {
+					content: '';
+					background-color: #CCCCCC;
+					width: 95%;
+					height: 2px;
+					box-shadow: 0 0 5px 2px #00adff;
+					display: block;
+					margin: 10px 0px 15px 0px;
+				}
+				.value-row {
+					display: flex;
+					align-items: center;
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					width: 100%;
+					justify-content: space-around;
+					margin-left: 4px;
+					li {
+						width: 35px;
+						height: 35px;
+						background-color: white;
+						border-radius: 7px;
+						margin: 0 10px 10px 0px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-weight: bold;
+					    font-family: sans-serif;
+					    font-size: 18px;
+					    &.done { opacity: 0.6 }
+					}
+					.reward {
+						width: 17px;
+					    height: 17px;
+					    border: 1px solid white;
+					    border-radius: 5px;
+					    box-shadow: 0 0 5px 0px #000;
+					    &.reroll, &.additional { background-color: black;  }
+					    &.blue { background-color: #336db2; }
+					    &.purple { background-color: #460760; }
+					    &.yellow { 
+					    	background-color: #f4e319;
+					    	color: black;
+					    }
+					    &.orange { background-color: #ee9c29; }
+					    &.green { background-color: #22BB22; }
+						.inner {
+							position: relative;
+							height: 100%;
+						    width: 100%;
+							&.reroll {
+						    	background-repeat: no-repeat;
+						    	background-size: contain;
+								background-image: url('/ressources/reroll-icon.png');
+							}
+							&.additional {
+								&::after {
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									transform: translate(-50%, -50%);
+									content: '+1';
+									color: white;
+									font-size: 12px;
+								}
+							}
+							&.blue, &.green, &.yellow {
+								&::after {
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									transform: translate(-47%, -57%);
+									content: 'x';
+									font-family: sans-serif;
+									font-size: 17px;
+								}
+							}
+							&.blue, &.green {
+								color: #e7e7e7;
+							}
+						}
+					}
+				}
+				.column-reward {
+					display: flex;
+					align-items: center;
+					margin: 0;
+					padding: 0;
+					list-style: none;
+					width: 100%;
+					justify-content: space-around;
+					margin-left: 4px;
+					.reward {
+						width: 17px;
+					    height: 17px;
+					    border: 1px solid white;
+					    border-radius: 5px;
+					    box-shadow: 0 0 5px 0px #000;
+					    &.reroll, &.additional { background-color: black;  }
+					    &.blue { background-color: #336db2; }
+					    &.purple { background-color: #460760; }
+					    &.yellow { 
+					    	background-color: #f4e319;
+					    	color: black;
+					    }
+					    &.orange { background-color: #ee9c29; }
+					    &.green { background-color: #22BB22; }
+						.inner {
+							position: relative;
+							height: 100%;
+						    width: 100%;
+							&.reroll {
+						    	background-repeat: no-repeat;
+						    	background-size: contain;
+								background-image: url('/ressources/reroll-icon.png');
+							}
+							&.additional {
+								&::after {
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									transform: translate(-50%, -50%);
+									content: '+1';
+									color: white;
+									font-size: 12px;
+								}
+							}
+							&.blue, &.green, &.yellow {
+								&::after {
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									transform: translate(-47%, -57%);
+									content: 'x';
+									font-family: sans-serif;
+									font-size: 17px;
+								}
+							}
+							&.blue, &.green {
+								color: #e7e7e7;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.green-grid {
+		background: radial-gradient(#11FF11 -150%, #000000 150%);
+    	border: 2px solid #44FF44;
+    	box-shadow: 0 0 5px 2px #11FF11;
+		height: 59px;
+		display: flex;
+		align-items: center;
+		border-radius: 10px;
+		margin-top: 20px;
+		padding: 0 13px;
+		.icon {
+			width: 34px;
+		    height: 34px;
+		    background-color: #22BB22;
+		    border: 2px solid white;
+		    border-radius: 10px;
+		    position: relative;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    .inner {
+		    	background-color: white;
+		    	height: 70%;
+		    	width: 80%;
+		    	clip-path: polygon(0% 20%, 49% 20%, 49% 0, 100% 50%, 49% 100%, 49% 80%, 0% 80%);
+		    }
+		}
+		ul {
+			display: flex;
+			align-items: center;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 100%;
+			justify-content: space-around;
+			margin-left: 4px;
+			li {
+				position: relative;
+				&.done { opacity: 0.6 }
+				.points {
+					width: 35px;
+					height: 35px;
+					clip-path: polygon(49% 0%, 56% 10%, 68% 9%, 70% 19%, 81% 21%, 78% 32%, 87% 38%, 79% 46%, 83% 57%, 71% 59%, 75% 72%, 64% 68%, 62% 78%, 51% 70%, 44% 79%, 39% 67%, 27% 73%, 28% 60%, 16% 61%, 23% 49%, 12% 48%, 20% 36%, 11% 31%, 22% 26%, 18% 17%, 29% 16%, 31% 6%, 43% 10%);
+					background-color: white;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					position: absolute;
+					top: -100%;
+					left: 0;
+					.inner {
+						clip-path: polygon(49% 0%, 56% 10%, 68% 9%, 70% 19%, 81% 21%, 78% 32%, 87% 38%, 79% 46%, 83% 57%, 71% 59%, 75% 72%, 64% 68%, 62% 78%, 51% 70%, 44% 79%, 39% 67%, 27% 73%, 28% 60%, 16% 61%, 23% 49%, 12% 48%, 20% 36%, 11% 31%, 22% 26%, 18% 17%, 29% 16%, 31% 6%, 43% 10%);
+						background-color: #22BB22;
+						width: 30px;
+						height: 30px;
+						transform: translate(0, -3%);
+						color: white;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-size: 13px;
+						div {
+							transform: translate(0, -3px);
+						}
+					}
+				}
+				.value {
+					width: 30px;
+					height: 30px;
+					background-color: white;
+					color: #22BB22;
+					border-radius: 7px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					.inner {
+
+					}
+				}
+				.reward {
+					width: 17px;
+				    height: 17px;
+				    border: 1px solid white;
+				    border-radius: 5px;
+				    position: absolute;
+				    top: 80%;
+				    left: 50%;
+				    transform: translate(-50%, 0);
+				    box-shadow: 0 0 5px 0px #000;
+				    &.reroll, &.additional { background-color: black;  }
+				    &.blue { background-color: #336db2; }
+				    &.purple { background-color: #460760; }
+				    &.yellow { 
+				    	background-color: #f4e319;
+				    	color: black;
+				    }
+				    &.orange { background-color: #ee9c29; }
+				    &.green { background-color: #22BB22; }
+					.inner {
+						position: relative;
+						height: 100%;
+					    width: 100%;
+						&.reroll {
+					    	background-repeat: no-repeat;
+					    	background-size: contain;
+							background-image: url('/ressources/reroll-icon.png');
+						}
+						&.additional {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								content: '+1';
+								color: white;
+								font-size: 12px;
+							}
+						}
+						&.blue, &.green, &.yellow {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-47%, -57%);
+								content: 'x';
+								font-family: sans-serif;
+								font-size: 17px;
+							}
+						}
+						&.blue, &.green {
+							color: #e7e7e7;
+						}
+					}
+				}
+			}
+		}
+	}
+	.orange-grid {
+		background: radial-gradient(#ee9c29 -150%, #000000 150%);
+    	border: 2px solid #ee9c29;
+    	box-shadow: 0 0 5px 2px #ee9c29;
+		height: 59px;
+		display: flex;
+		align-items: center;
+		border-radius: 10px;
+		margin-top: 15px;
+		padding: 0 13px;
+		.icon {
+			width: 34px;
+		    height: 34px;
+		    background-color: #ee9c29;
+		    border: 2px solid white;
+		    border-radius: 10px;
+		    position: relative;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    .inner {
+		    	background-color: white;
+		    	height: 70%;
+		    	width: 80%;
+		    	clip-path: polygon(0% 20%, 49% 20%, 49% 0, 100% 50%, 49% 100%, 49% 80%, 0% 80%);
+		    }
+		}
+		ul {
+			display: flex;
+			align-items: center;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 100%;
+			justify-content: space-around;
+			margin-left: 4px;
+			li {
+				position: relative;
+				width: 30px;
+				height: 30px;
+				background-color: white;
+				color: #ee9c29;
+				border-radius: 7px;
+				justify-content: center;
+				display: flex;
+				align-items: center;
+				&.done { opacity: 0.6 }
+				.multiplier {
+				}
+				.reward {
+					width: 17px;
+				    height: 17px;
+				    border: 1px solid white;
+				    border-radius: 5px;
+				    position: absolute;
+				    top: 80%;
+				    left: 50%;
+				    transform: translate(-50%, 0);
+				    box-shadow: 0 0 5px 0px #000;
+				    &.reroll, &.additional { background-color: black;  }
+				    &.blue { background-color: #336db2; }
+				    &.purple { background-color: #460760; }
+					&.yellow { 
+				    	background-color: #f4e319;
+				    	color: black;
+				    }				    &.orange { background-color: #ee9c29; }
+				    &.green { background-color: #22BB22; }
+					.inner {
+						position: relative;
+						height: 100%;
+					    width: 100%;
+						&.reroll {
+					    	background-repeat: no-repeat;
+					    	background-size: contain;
+							background-image: url('/ressources/reroll-icon.png');
+						}
+						&.additional {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								content: '+1';
+								color: white;
+								font-size: 12px;
+							}
+						}
+						&.blue, &.green, &.yellow {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-47%, -57%);
+								content: 'x';
+								font-family: sans-serif;
+								font-size: 17px;
+							}
+						}
+						&.blue, &.green {
+							color: #e7e7e7;
+						}
+					}
+				}
+			}
+		}
+	}
+	.purple-grid {
+		background: radial-gradient(#8d0dc2 -150%, #000000 150%);
+    	border: 2px solid #8d0dc2;
+    	box-shadow: 0 0 5px 2px #8d0dc2;
+		height: 59px;
+		display: flex;
+		align-items: center;
+		border-radius: 10px;
+		margin-top: 15px;
+		padding: 0 13px;
+		.icon {
+			width: 34px;
+		    height: 34px;
+		    background-color: #8d0dc2;
+		    border: 2px solid white;
+		    border-radius: 10px;
+		    position: relative;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    .inner {
+		    	background-color: white;
+		    	height: 70%;
+		    	width: 80%;
+		    	clip-path: polygon(0% 20%, 49% 20%, 49% 0, 100% 50%, 49% 100%, 49% 80%, 0% 80%);
+		    }
+		}
+		ul {
+			display: flex;
+			align-items: center;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 100%;
+			justify-content: space-around;
+			margin-left: 4px;
+			li {
+				position: relative;
+				width: 30px;
+				height: 30px;
+				background-color: white;
+				color: #ee9c29;
+				border-radius: 7px;
+				justify-content: center;
+				display: flex;
+				align-items: center;
+				&.done { opacity: 0.6 }
+				.arrow {
+					position: absolute;
+					top: 50%;
+					left: 90%;
+					transform: translate(0, -50%);
+					clip-path: polygon(0% 46%, 65% 1%, 88% 23%, 44% 48%, 76% 64%, 71% 91%, 5% 71%);
+					width: 70%;
+					height: 70%;
+					background-color: #8d0dc2;
+					z-index: 10;
+					&::after {
+						content: '';
+						width: 83%;
+						height: 80%;
+						clip-path: polygon(0% 46%, 65% 1%, 83% 19%, 36% 49%, 76% 71%, 71% 91%, 5% 71%);
+						position: absolute;
+						background-color: white;
+						transform: translate(2px, 2px);
+					}
+				}
+				.reward {
+					width: 17px;
+				    height: 17px;
+				    border: 1px solid white;
+				    border-radius: 5px;
+				    position: absolute;
+				    top: 80%;
+				    left: 50%;
+				    transform: translate(-50%, 0);
+				    box-shadow: 0 0 5px 0px #000;
+				   	&.reroll, &.additional { background-color: black;  }
+				    &.blue { background-color: #336db2; }
+				    &.purple { background-color: #460760; }
+				    &.yellow { 
+				    	background-color: #f4e319;
+				    	color: black;
+				    }
+				    &.orange { background-color: #ee9c29; }
+				    &.green { background-color: #22BB22; }
+					.inner {
+						position: relative;
+						height: 100%;
+					    width: 100%;
+						&.reroll {
+					    	background-repeat: no-repeat;
+					    	background-size: contain;
+							background-image: url('/ressources/reroll-icon.png');
+						}
+						&.additional {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								content: '+1';
+								color: white;
+								font-size: 12px;
+							}
+						}
+						&.blue, &.green, &.yellow {
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-47%, -57%);
+								content: 'x';
+								font-family: sans-serif;
+								font-size: 17px;
+							}
+						}
+						&.blue, &.green {
+							color: #e7e7e7;
+						}
+					}
+				}
+			}
+		}
+	}
+}
