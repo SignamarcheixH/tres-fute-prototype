@@ -1,6 +1,7 @@
 #vue-game-master {
-	display: flex;	
-	.roll-dices {
+	display: flex;
+	position: relative;
+	.roll-dices, .dead-dices {
 		display: flex;
 		.dice {
 			width: 50px;

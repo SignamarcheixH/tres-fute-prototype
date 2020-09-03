@@ -2,13 +2,13 @@
 	<div class="gaming-data">
 		<div class="dices">
 			<div class="dice-square">
-				<div class="inner"></div>
+				<div class="inner" :class="chosenDices.first.color"><span>{{ chosenDices.first.value }}</span></div>
 			</div>
 			<div class="dice-square">
-				<div class="inner"></div>
+				<div class="inner" :class="chosenDices.second.color"><span>{{ chosenDices.second.value }}</span></div>
 			</div>
 			<div class="dice-square">
-				<div class="inner"></div>
+				<div class="inner" :class="chosenDices.third.color"><span>{{ chosenDices.third.value }}</span></div>
 			</div>
 		</div>
 		<div class="rows">
@@ -25,15 +25,23 @@
 					<div class="inner reroll"></div>
 				</div>	
 				<ul>
-					<li v-for="index in 7" class="power-circle"></li>
-				</ul>
+					<zone 
+						v-for="index in 7" 
+						class="power-circle tralala"
+						:class="playerData.powers.reroll[index]"
+						:actions="zonesActions.powers"
+						@click="clicked"
+					>
+					</zone>
+<!-- 					<li v-for="index in 7" class="power-circle" :class="playerData.powers.reroll[index]"></li>
+ -->			</ul>
 			</div>
 			<div class="additional-dice-power">
 				<div class="icon">
 					<div class="inner additional"></div>
 				</div>	
 				<ul>
-					<li v-for="index in 7" class="power-circle"></li>
+					<li v-for="index in 7" class="power-circle" :class="playerData.powers.additional[index]"></li>
 				</ul>
 			</div>
 		</div>
@@ -46,10 +54,13 @@
 				   	:data-row="indexRow"
 				   	:data-col="indexCol"
 				   	:data-value="item"
+				   	data-color="yellow"
 				   	@click="clicked"
-				   	:actions="zonesActions.cases"
-				   	:disabled="isDisabled('yellow', item, indexCol, indexRow)">
-					<div v-if="item">{{ item }}</div>
+				   	:actions="zonesActions.yellowCases"
+				   	:disabled="isDisabled('yellow', item, indexCol, indexRow)"
+				>
+					<div v-if="playerData.yellow[indexRow][indexCol]">X</div>
+					<div v-else-if="item">{{ item }}</div>
 					<div v-else>X</div>
 				</zone>
 				<div class="reward" :class="fields.yellowGrid.rewards.rows[indexRow]">
@@ -83,10 +94,12 @@
 					 	:data-row="indexRow" 
 					 	:data-col="indexCol"
 					 	:data-value="item"
+					 	data-color="blue"
 					 	@click="clicked"
-					 	:actions="zonesActions.cases"
+					 	:actions="zonesActions.blueCases"
 					 	:disabled="isDisabled('blue', item, indexCol, indexRow)">
-						<div v-if="item">{{ item }}</div>
+						<div v-if="playerData.blue[indexRow][indexCol]">X</div>
+						<div v-else-if="item">{{ item }}</div>
 						<div v-else class="dices"></div>
 					</zone>
 					<div class="reward" :class="fields.blueGrid.rewards.rows[indexRow]">
@@ -112,8 +125,9 @@
 				v-for="(item, index) in fields.greenGrid.values" 
 				:data-value="item.value" 
 				:data-index="index"
+				data-color="green"
 				@click="clicked"
-				:actions="zonesActions.cases"
+				:actions="zonesActions.greenCases"
 				:disabled="isDisabled('green', item, index)">
 				<div class="points">
 					<div class="inner">
@@ -121,7 +135,8 @@
 					</div>	
 				</div>
 				<div class="value">
-					<div class="inner">≥{{ item.value }}</div>
+					<div class="inner" v-if="index < playerData.green.length">X</div>
+					<div class="inner" v-else>≥{{ item.value }}</div>
 				</div>
 				<div v-if="item.reward" class="reward" :class="item.reward">
 					<div class="inner" :class="item.reward"></div>
@@ -137,9 +152,13 @@
 			<zone 
 				v-for="(item, index) in fields.orangeGrid.values"
 				@click="clicked"
-				:actions="zonesActions.cases"
+				data-color="orange"
+				:data-index="index"
+				:actions="zonesActions.orangeCases"
 				:disabled="isDisabled('orange', item, index)">
-				<div v-if="item.multiplier" class="multiplier">x{{ item.multiplier }}</div>
+				<div v-if="index < playerData.orange.length" class="multiplier">{{ playerData.orange[index] }}</div>
+				<div v-else-if="item.multiplier" class="multiplier">x{{ item.multiplier }}</div>
+				<div v-else class="multiplier"></div>
 				<div v-if="item.reward" class="reward" :class="item.reward">
 					<div class="inner" :class="item.reward"></div>
 				</div>
@@ -154,8 +173,11 @@
 			<zone 
 				v-for="(item, index) in fields.purpleGrid.values"
 				@click="clicked"
-				:actions="zonesActions.cases"
+				:data-index="index"
+				data-color="purple"
+				:actions="zonesActions.purpleCases"
 				:disabled="isDisabled('purple', item, index)">
+				<div v-if="index < playerData.purple.length">{{ playerData.purple[index] }}</div>
 				<div v-if="item.reward" class="reward" :class="item.reward">
 					<div class="inner" :class="item.reward"></div>
 				</div>

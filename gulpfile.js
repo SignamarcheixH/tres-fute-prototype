@@ -1,5 +1,6 @@
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const browserify = require('gulp-browserify');
 const fs = require('fs');
 const gulp = require('gulp');
 const livereload = require('gulp-livereload');
@@ -48,6 +49,7 @@ function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
     .pipe(babel({presets: ["@babel/preset-env"]}))
     .pipe(uglify())
+    .pipe(browserify())
     .pipe(concat('main.min.js'))
     .pipe(notify({ message: 'JS generated' }))
     .pipe(gulp.dest(paths.scripts.dest));

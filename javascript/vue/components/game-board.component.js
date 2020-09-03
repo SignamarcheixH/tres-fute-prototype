@@ -1,16 +1,37 @@
 Vue.component('game-board', {
-    // delimiters: ['[[', ']]'],
-    // mixins: [eventHubMixin, languageMixin],
     props: {
       playerData: {},
-      currentDices: {}
+      currentDices: {},
+      chosenDices: {},
+      deadDices: {}
     },
     data: () => {
       return {
         zonesActions: {
-          cases: [
-            'pickWithColoredDice',
-            'pickWithWhiteDice',
+          powers: ['tick'],
+          yellowCases: [
+            'yellow',
+            'white',
+            'tick'
+          ],
+          blueCases: [
+            'blue',
+            'white',
+            'tick'
+          ],
+          greenCases: [
+            'green',
+            'white',
+            'tick'
+          ],
+          orangeCases: [
+            'orange',
+            'white',
+            'tick'
+          ],
+          purpleCases: [
+            'purple',
+            'white',
             'tick'
           ]
         },
@@ -165,7 +186,22 @@ Vue.component('game-board', {
     },
     methods: {
       clicked(val) {
-        this.$emit('clicked', val)
+        if(!val.disabled) {
+          this.$emit('clicked', val)
+        }
+      },
+      findDice(color) {
+        if(this.currentDices[color]) {
+          return this.currentDices[color]
+        } else if(this.deadDices[color]) {
+          return this.deadDices[color] 
+        } else {
+          for(let dice in this.chosenDices) {
+            if(this.chosenDices[dice].color == color) {
+              return this.chosenDices[dice].value
+            }
+          }        
+        }
       },
       isDisabled(color, item, indexCol=null, indexRow=null) {
         switch(color) {
@@ -173,14 +209,17 @@ Vue.component('game-board', {
             return (this.playerData.green.length == indexCol) ? !((this.currentDices.green >= item.value) || (this.currentDices.white >= item.value)) : true
             break
           case 'blue':
-            let total = this.currentDices.blue + this.currentDices.white
+            let total = this.findDice('blue') + this.findDice('white')
             return (this.playerData.blue[indexRow][indexCol] || (total != item))      
             break
           case 'yellow':
             return (this.playerData.yellow[indexRow][indexCol]) || ((this.currentDices.yellow != item) && (this.currentDices.white != item))
             break
           case 'orange':
-            return !(this.playerData.orange.length == indexCol)
+            if(this.currentDices.hasOwnProperty('orange') || this.currentDices.hasOwnProperty('white')) {
+              return !(this.playerData.orange.length == indexCol)
+            }
+            return true
             break
           case 'purple':
             return (this.playerData.purple.length == indexCol) ? !((this.currentDices.purple >= this.playerData.purple[this.playerData.purple.length - 1]) || (this.currentDices.white >= this.playerData.purple[this.playerData.purple.length - 1])) : true
@@ -189,5 +228,5 @@ Vue.component('game-board', {
       }
     },
     mounted() {},
-    template: 'game-board.component.html' 
+    template: 'game-board.component.html'
   })  

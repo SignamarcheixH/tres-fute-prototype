@@ -16,6 +16,14 @@
 					height: 100%;
 					background-color: #FFFFFE;
 					border-radius: 5px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					&.yellow { background-color: #fff702; }
+					&.blue { background-color: #00adff; }
+					&.green { background-color: #44FF44; }
+					&.orange { background-color: #ee9c29 }
+					&.purple { background-color: #8d0dc2 }
 				}
 			}
 		}
@@ -121,6 +129,11 @@
 					    border: 5px solid white;
 					    background-color: lightgray;
 	    			    box-shadow: 0 0 5px 0px #000;
+	    			    &.unused { border: 5px solid darkgray; }
+	    			    &.used { 
+	    			    	background-color: darkgray;
+	    			    	border: 5px solid darkgray;
+	    			    }
 					}
 				}
 			}

@@ -20,6 +20,9 @@
     "gulp-rename": "^1.4.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-tap": "^2.0.0",
-    "vue": "^2.6.10"
+    "gulp-browserify": "^0.5.1",
+    "vue": "^2.6.10",
+    "highcharts": "^8.1.2",
+    "vue-highcharts": "^0.1.0"
   }
 }

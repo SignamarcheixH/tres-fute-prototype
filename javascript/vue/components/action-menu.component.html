@@ -1,1 +1,7 @@
-<div class="action-menu" :style="{ left: position.x + 'px', top: position.y + 'px' }"></div>
+<div class="action-menu-wrapper" @click.self="close" :class="{ active: isOpen }">
+  <div class="action-menu" :style="{ left: position.x + 'px', top: position.y + 'px' }">
+    <div class="action" v-for="(value, index) in actions" @click="actionChosen(value)">
+    	<div :style="{ 'background-image': 'url('+ getIconUrl(value)+')'}" class="icon"/>
+    </div>
+  </div>
+</div>
